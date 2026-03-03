@@ -1,11 +1,13 @@
 from .models import Recipe
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def recipe(request, name):
     recipe = Recipe.objects.get(name=name)
     ingredients = recipe.recipe_ingredients.all()
-    ctx = {"name": recipe, "ingredients": ingredients}
+    author = recipe.author
+    ctx = {"name": recipe, "ingredients": ingredients, "author": author}
     return render(request, "./recipes/recipe.html", ctx)
 
 
