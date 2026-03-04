@@ -29,6 +29,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG")
 
+ALLOWED_HOSTS = []
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,10 +56,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'recipebook.urls'
 
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],        'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],        
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
